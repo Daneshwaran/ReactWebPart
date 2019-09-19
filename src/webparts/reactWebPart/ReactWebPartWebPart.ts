@@ -11,6 +11,7 @@ import * as strings from 'ReactWebPartWebPartStrings';
 import ReactWebPart from './components/ReactWebPart';
 import { IReactWebPartProps } from './components/IReactWebPartProps';
 
+import {MSGraphClient} from '@microsoft/sp-http'
 export interface IReactWebPartWebPartProps {
   description: string;
 }
@@ -18,14 +19,18 @@ export interface IReactWebPartWebPartProps {
 export default class ReactWebPartWebPart extends BaseClientSideWebPart<IReactWebPartWebPartProps> {
 
   public render(): void {
-    const element: React.ReactElement<IReactWebPartProps > = React.createElement(
-      ReactWebPart,
-      {
-        description: this.properties.description
-      }
-    );
-
-    ReactDom.render(element, this.domElement);
+    this.context.msGraphClientFactory.getClient()
+    .then((client:MSGraphClient):void=>{
+      const element: React.ReactElement<IReactWebPartProps > = React.createElement(
+        ReactWebPart,
+        {
+          description: this.properties.description,
+          graphClient:client
+        }
+      );
+      ReactDom.render(element, this.domElement);
+    });
+  
   }
 
   protected onDispose(): void {
