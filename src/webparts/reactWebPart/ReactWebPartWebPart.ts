@@ -11,7 +11,7 @@ import * as strings from 'ReactWebPartWebPartStrings';
 import ReactWebPart from './components/ReactWebPart';
 import { IReactWebPartProps } from './components/IReactWebPartProps';
 
-import {MSGraphClient} from '@microsoft/sp-http'
+import {MSGraphClient} from '@microsoft/sp-http';
 export interface IReactWebPartWebPartProps {
   description: string;
 }

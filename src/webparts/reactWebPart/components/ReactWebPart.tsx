@@ -9,7 +9,7 @@ export default class ReactWebPart extends React.Component<IReactWebPartProps, {n
 
   public componentDidMount(): void{
     this.props.graphClient
-    .api('me')
+    .api("https://graph.microsoft.com/v1.0/sites/danesh96.sharepoint.com,1e8f08be-d4db-43d8-a398-198099a9378b,a89d96e0-bb32-4cc1-a664-2d63c703214b/drive/root:/new.xlsx:/workbook/tables('1')/rows")
     .get((error:any,user:any,rawResponse?:any) => {
       this.setState({
         name: user.displayName,
@@ -24,19 +24,7 @@ export default class ReactWebPart extends React.Component<IReactWebPartProps, {n
   public render(): React.ReactElement<IReactWebPartProps> {
     return (
       <div className={ styles.reactWebPart }>
-        <div className={ styles.container }>
-          <div className={ styles.row }>
-            <div className={ styles.column }>
-              <span className={ styles.title }>Welcome to SharePoint!! Graph: {this.state.name}  </span>
-              <p className={ styles.subTitle }>Customize SharePoint experiences using Web Parts.</p>
-              <p className={ styles.description }>{escape(this.props.description)}</p>
-              <a href="https://aka.ms/spfx" className={ styles.button }>
-                <span className={ styles.label }>Learn more</span>
-                
-              </a>
-            </div>
-          </div>
-        </div>
+
       </div>
     );
   }
